@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "59795611234",
+    "project_id": "viaticos-52cbc",
+    "storage_bucket": "viaticos-52cbc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59795611234:android:900f7f952e4aa2b4c5fb3b",
+        "android_client_info": {
+          "package_name": "com.brybelt.Viaticos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "59795611234-idkbra2klsnhnf7q1l6nk8asvume4m0l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQhCFRA7qo0D1wkT7aGP6odDu5NZTTemU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "59795611234-idkbra2klsnhnf7q1l6nk8asvume4m0l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
