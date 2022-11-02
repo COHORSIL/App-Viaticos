@@ -3,9 +3,9 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 //Components
-import Home from "../Components/Home/Home";
 import DetalleSoli from "../Components/Home/DetalleSoli";
 import AddGasto from "../Components/Home/AddGasto";
+import TabTopHomeNavigaitor from "./TabTopHomeNavigaitor";
 
 const Stack = createStackNavigator();
 
@@ -25,7 +25,7 @@ export default function StackHome() {
     >
       <Stack.Screen
         name="Home"
-        component={Home}
+        component={TabTopHomeNavigaitor}
         options={{
           title: "Home",
         }}
@@ -41,7 +41,7 @@ export default function StackHome() {
         name="AddGasto"
         component={AddGasto}
         options={{
-          title: "Agregar Gasto",
+          title: "Gasto Agregados",
         }}
       />
     </Stack.Navigator>

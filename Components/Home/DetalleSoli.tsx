@@ -39,7 +39,6 @@ export default function DetalleSoli(props: any) {
   const [Texto, setTexto] = useState<string>("");
   const [ActividadesData, setActividadesData] = useState<DetalleSolic[]>([]);
   const [Elevat, setElevat] = useState<number>(0);
-  const [isExtended, setIsExtended] = useState<boolean>(true);
 
   props.navigation.setOptions({ title: `Solicitud # ${data.Id_Solicitud}` });
 
@@ -94,6 +93,7 @@ export default function DetalleSoli(props: any) {
   const NavigateGasto = () => {
     props.navigation.navigate("AddGasto", {
       data: data,
+      ActividadesData: ActividadesData,
     });
   };
 

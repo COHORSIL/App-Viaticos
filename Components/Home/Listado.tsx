@@ -14,6 +14,8 @@ import "moment/locale/es";
 import { ListData, PropsHome } from "../Interface/AppinterfaceHome";
 import Format from "../../Utils/Format";
 import { Icon } from "react-native-elements";
+import { useGlobalContext } from "../../Context/Contex";
+import { Solicitu } from "../../Utils/Api";
 import { StackScreenProps } from "@react-navigation/stack";
 const wait = (timeout: any) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -107,15 +109,36 @@ interface Props extends StackScreenProps<any, any> {
 export default function Listado({ Estado, navigation, route }: Props) {
   const [refreshing, setRefreshing] = useState(false);
   const [Listado, setListado] = useState<ListData[]>([]);
+  const { Token } = useGlobalContext();
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
+  // useEffect(() => {
+  //   setListado(Array);
+  // }, []);
+
   useEffect(() => {
-    setListado(Array);
-  }, []);
+    let url = Solicitu();
+    let options1 = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: Token,
+      },
+    };
+
+    fetch(url, options1)
+      .then((res) => res.json())
+      .then((result) => {
+        setListado(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [Estado]);
 
   return (
     <SafeAreaView style={styles.container}>

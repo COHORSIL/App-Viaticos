@@ -1,16 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, TouchableOpacity, Image, View, Text } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { manipulateAsync, SaveFormat } from "expo-image-manipulator";
 import { Icon } from "react-native-elements";
-import { IconButton } from "react-native-paper";
+import {
+  Button,
+  IconButton,
+  Dialog,
+  Portal,
+  Provider,
+} from "react-native-paper";
+import { Camera, CameraType } from "expo-camera";
 import LottieImagen from "../Anim/LottieImagen";
 interface Photos {
   image: string;
   setImage: (e: string) => void;
+  setVisibleCamara: (e: boolean) => void;
 }
 
-export default function Photo({ image, setImage }: Photos) {
+export default function Photo({ image, setImage, setVisibleCamara }: Photos) {
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -23,19 +31,6 @@ export default function Photo({ image, setImage }: Photos) {
       ResizePhoto(result.uri);
     }
   };
-
-  const pickPhoto = async () => {
-    let result = await ImagePicker.launchCameraAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-    if (!result.cancelled) {
-      ResizePhoto(result.uri);
-    }
-  };
-
   useEffect(() => {
     Permisos();
   }, []);
@@ -57,7 +52,10 @@ export default function Photo({ image, setImage }: Photos) {
   return (
     <>
       <View style={styles.botones}>
-        <TouchableOpacity style={styles.signIn} onPress={pickPhoto}>
+        <TouchableOpacity
+          style={styles.signIn}
+          onPress={() => setVisibleCamara(true)}
+        >
           <Icon
             tvParallaxProperties
             type="material-community"
@@ -157,5 +155,17 @@ const styles = StyleSheet.create({
     right: -10,
     borderWidth: 2,
     borderColor: "#969696",
+  },
+  camera: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  cameraContainer: {
+    height: "60%",
+  },
+  fixedRatio: {
+    flex: 1,
+    aspectRatio: 1,
   },
 });
